@@ -14,22 +14,22 @@
 <body>
 <h1>List Employee</h1>
 <a href="/employee/add">Add new employee</a>
-<%--<form action="/employee/delete" method="POST">--%>
-<%--    <table>--%>
-<%--        <tr>--%>
-<%--            <th>ID</th>--%>
-<%--            <th>Remove</th>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>--%>
-<%--                <input type="text" name="employeeId">--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                <input type="submit" value="Remove">--%>
-<%--            </td>--%>
-<%--        </tr>--%>
-<%--    </table>--%>
-<%--</form>--%>
+<form action="/employee/delete" method="Delete">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Remove</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name="employeeId">
+            </td>
+            <td>
+                <input type="submit" value="Remove">
+            </td>
+        </tr>
+    </table>
+</form>
 
 <table style="border: black 2px solid">
     <tr>
@@ -37,7 +37,6 @@
         <th>Age</th>
         <th>Name</th>
         <th>City</th>
-        <th>Remove</th>
     </tr>
     <c:forEach var="temp" items="${listEmployee}">
         <td>
@@ -46,10 +45,8 @@
                 <td><c:out value="${temp.employeeAge}"/></td>
                 <td><c:out value="${temp.employeeName}"/></td>
                 <td><c:out value="${temp.employeeCity}"/></td>
-                <td><a href="delete?employeeID=<c:out value='${temp.employeeID}'/>">Delete</a></td>
             </tr>
         </td>
-
     </c:forEach>
 </table>
 </body>

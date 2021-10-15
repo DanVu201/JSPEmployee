@@ -14,22 +14,22 @@
 <body>
 <h1>List Employee</h1>
 <a href="/employee/add">Add new employee</a>
-<%--<form action="/employee/delete" method="POST">--%>
-<%--    <table>--%>
-<%--        <tr>--%>
-<%--            <th>ID</th>--%>
-<%--            <th>Remove</th>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>--%>
-<%--                <input type="text" name="employeeId">--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                <input type="submit" value="Remove">--%>
-<%--            </td>--%>
-<%--        </tr>--%>
-<%--    </table>--%>
-<%--</form>--%>
+<form action="/employee/delete" method="Delete">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Remove</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name="employeeId">
+            </td>
+            <td>
+                <input type="submit" value="Remove">
+            </td>
+        </tr>
+    </table>
+</form>
 
 <table style="border: black 2px solid">
     <tr>
