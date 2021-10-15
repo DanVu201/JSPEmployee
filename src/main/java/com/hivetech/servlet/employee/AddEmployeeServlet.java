@@ -25,12 +25,17 @@ public class AddEmployeeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/employeeInfo.jsp");
         dispatcher.forward(request,response);
         LOGGER.info(String.format("Method: %s | action: %s ", request.getMethod(), request.getRequestURI()));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
         int employeeAge = Integer.parseInt(request.getParameter("employeeAge"));
         String employeeName = request.getParameter("employeeName");

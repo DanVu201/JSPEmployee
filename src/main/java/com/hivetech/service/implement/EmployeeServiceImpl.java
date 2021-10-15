@@ -23,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private static String DELETE_EMPLOYEE_BY_TD = "DELETE FROM employees WHERE Id = ?;";
     private static String GET_EMPLOYEE_BY_ID = "SELECT * FROM employees WHERE Id = ?;";
     private static String UPDATE_EMPLOYEE = "UPDATE employees SET Age = ?, Name = ?, City = ? WHERE Id = ?;";
-    private static String INSERT_EMPLOYEE = "INSERT INTO employees(Id, Age, Name, City) VALUES(?, ?, ?, ?);";
+    private static String INSERT_EMPLOYEE = "INSERT INTO employees(Id, Age, Name, City) VALUES (?, ?, ?, ?);";
 
     @Override
     public List<Employee> employees() {
@@ -51,10 +51,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
-
     @Override
-    public Employee getEmployeeById(int employeeId) {
-        Employee result = null;
+    public List<Employee> getEmployeeById(int employeeId) {
+        List<Employee> list = new ArrayList<>();
         PreparedStatement statement = null;
         ResultSet rs = null;
         try {
@@ -62,12 +61,12 @@ public class EmployeeServiceImpl implements EmployeeService {
             statement.setInt(1, employeeId);
 
             rs = statement.executeQuery();
-            if(rs.next()) {
-                result = new Employee(
+            if (rs.next()) {
+                list.add(new Employee(
                         rs.getInt("Id"),
                         rs.getInt("Age"),
                         rs.getString("Name"),
-                        rs.getString("City"));
+                        rs.getString("City")));
             }
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());
@@ -75,7 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             JDBC_Helper.closeResultSet(rs);
             JDBC_Helper.closeStatement(statement);
         }
-        return result;
+        return list;
     }
 
     @Override
@@ -100,7 +99,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public boolean update(Employee employee) {
-        return false;
+        boolean isUpdated = false;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(UPDATE_EMPLOYEE);
+            statement.setInt(1, employee.getEmployeeAge());
+            statement.setString(2, employee.getEmployeeName());
+            statement.setString(3, employee.getEmployeeCity());
+            statement.setInt(4, employee.getEmployeeId());
+            isUpdated = statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.getMessage());
+            return false;
+        } finally {
+            JDBC_Helper.closeStatement(statement);
+        }
+        return isUpdated;
     }
 
     @Override

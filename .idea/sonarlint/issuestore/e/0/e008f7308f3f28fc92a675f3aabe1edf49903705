@@ -1,0 +1,18 @@
+
+\
+java:S1118
+":Add a private constructor to hide the implicit public one.(ï óäÿÿÿÿÿ8ÑÔæÈÇ/
+m
+java:S3457"KFormat specifiers or lambda should be used instead of string concatenation.(‹Šáùÿÿÿÿ8ÑÔæÈÇ/
+m
+java:S3457"KFormat specifiers or lambda should be used instead of string concatenation.(‹Šáùÿÿÿÿ8àÔæÈÇ/
+[
+java:S1854$">Remove this useless assignment to local variable "connection".(ÈØ“8ğÔæÈÇ/
+m
+java:S3457'"KFormat specifiers or lambda should be used instead of string concatenation.(‹Šáùÿÿÿÿ8€ÕæÈÇ/
+j
+java:S1192"HDefine a constant instead of duplicating this literal "ERROR: " 3 times.(‹Šáùÿÿÿÿ8ÕæÈÇ/
+n	java:S101
+"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ï óäÿÿÿÿÿ8ÕæÈÇ/
+j
+java:S2259""HA "NullPointerException" could be thrown; "connection" is nullable here.(¼Ş»‚ıÿÿÿÿ8ŸÕæÈÇ/

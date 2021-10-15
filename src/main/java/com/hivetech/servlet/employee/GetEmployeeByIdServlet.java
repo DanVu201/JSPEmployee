@@ -1,5 +1,6 @@
 package com.hivetech.servlet.employee;
 
+
 import com.hivetech.model.Employee;
 import com.hivetech.service.EmployeeService;
 import com.hivetech.service.implement.EmployeeServiceImpl;
@@ -14,10 +15,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-@WebServlet("/employee/list")
-public class ListEmployeeServlet extends HttpServlet {
+@WebServlet("/employee/GetById")
+public class GetEmployeeByIdServlet extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(ListEmployeeServlet.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(GetEmployeeByIdServlet.class.getName());
 
     private EmployeeService employeeService;
 
@@ -25,16 +26,16 @@ public class ListEmployeeServlet extends HttpServlet {
         employeeService = new EmployeeServiceImpl();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        List<Employee> list = employeeService.employees();
-        request.setAttribute("listEmployee", list);
+        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+        List<Employee> employee = employeeService.getEmployeeById(employeeId);
+        request.setAttribute("listEmployee", employee);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/listEmployee.jsp");
         dispatcher.forward(request, response);
 
-        LOGGER.info(String.format("Method: %s; Servlet Path: %s; Num of Employee: %d",
-                request.getMethod(), request.getServletPath(), list.size()));
+        LOGGER.info(String.format("Method: %s; Servlet Path: %s; Num of Employee: %d "
+                , request.getMethod(), request.getServletPath(), employee.size()));
     }
 }

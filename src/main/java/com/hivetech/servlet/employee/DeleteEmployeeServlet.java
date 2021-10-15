@@ -27,7 +27,7 @@ public class DeleteEmployeeServlet extends HttpServlet {
     }
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int employeeId = Integer.parseInt(request.getParameter("employeeID"));
+        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
         boolean isDeleted = employeeService.delete(employeeId);
 
         response.sendRedirect("/employee/list");
