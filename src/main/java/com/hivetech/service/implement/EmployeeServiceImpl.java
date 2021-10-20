@@ -15,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EmployeeServiceImpl implements EmployeeService {
-
     private static final Logger LOGGER = Logger.getLogger(EmployeeServiceImpl.class.getName());
     private static Connection connection = Database.getConnection();
 
@@ -134,3 +133,4 @@ public class EmployeeServiceImpl implements EmployeeService {
         return isDeleted;
     }
 }
+

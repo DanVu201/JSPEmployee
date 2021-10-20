@@ -4,7 +4,9 @@ import com.hivetech.model.Employee;
 import com.hivetech.service.EmployeeService;
 import com.hivetech.service.implement.EmployeeServiceImpl;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @WebServlet("/employee/edit")
+@MultipartConfig
 public class EditEmployeeServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(EditEmployeeServlet.class.getName());
@@ -23,6 +26,7 @@ public class EditEmployeeServlet extends HttpServlet {
     public void init() {
         employeeService = new EmployeeServiceImpl();
     }
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

@@ -5,7 +5,7 @@
   Time: 9:49 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -13,42 +13,29 @@
 </head>
 <body>
 <h2><a href="/index.jsp">Home page</a></h2>
+<h2><a href="/employee/list">List All</a></h2>
 <h3>Add new employee</h3>
-<form action="/employee/add" method="POST">
-    <%--    </c:if>--%>
+
+<form action="/employee/add" method="post">
     <table style="border: black 1px solid">
         <tr>
-            <th>ID</th>
-            <td>
-                <input type="text" name="employeeId"/>
-            </td>
-        </tr>
-        <tr>
+            <th>Id</th>
             <th>Age</th>
-            <td>
-                <input type="text" name="employeeAge"/>
-            </td>
-        </tr>
-        <tr>
             <th>Name</th>
-            <td>
-                <input type="text" name="employeeName"/>
-            </td>
-        </tr>
-        <tr>
             <th>City</th>
-            <td>
-                <input type="text" name="employeeCity"/>
-            </td>
+            <th>Add</th>
+            <th>Edit</th>
         </tr>
         <tr>
-            <td>
-                <input type="submit" value="ADD"/>
-                <input type="reset" value="RESET"/>
-            </td>
+            <td><input type="text" name="employeeId"></td>
+            <td><input type="text" name="employeeAge"></td>
+            <td><input type="text" name="employeeName"></td>
+            <td><input type="text" name="employeeCity"></td>
+            <td><input type="submit" value="Add"></td>
         </tr>
     </table>
 </form>
+
 <h3>Delete an employee by ID </h3>
 <form action="/employee/delete" method="Delete">
     <table style="border: black 1px solid">

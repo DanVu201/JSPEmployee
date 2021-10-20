@@ -24,14 +24,13 @@ public class AddEmployeeServlet extends HttpServlet {
         employeeService = new EmployeeServiceImpl();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/employeeInfo.jsp");
-        dispatcher.forward(request,response);
-        LOGGER.info(String.format("Method: %s | action: %s ", request.getMethod(), request.getRequestURI()));
-    }
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        request.setCharacterEncoding("UTF-8");
+//        response.setCharacterEncoding("UTF-8");
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/listEmployee.jsp");
+//        dispatcher.forward(request,response);
+//        LOGGER.info(String.format("Method: %s | action: %s ", request.getMethod(), request.getRequestURI()));
+//    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
