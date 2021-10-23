@@ -21,7 +21,7 @@
 <form action="/employee/GetById" method="get">
     <table style="border: black 1px solid">
         <tr>
-            <th>ID</th>
+            <th>Id</th>
             <th>Select</th>
         </tr>
         <tr>
@@ -53,7 +53,7 @@
                     <td>${temp.employeeAge}</td>
                     <td>${temp.employeeName}</td>
                     <td>${temp.employeeCity}</td>
-                    <td><a href="/employee/edit?Id=${temp.employeeId}">
+                    <td><a href="<c:url value="/employee/edit?Id=${temp.employeeId}"/>">
                         <button type="submit" name="Edit">Edit</button>
                     </a></td>
                     <td>
@@ -70,7 +70,7 @@
         $(document).on('click', '#delete', function (e) {
             e.preventDefault();
             var employeeId = $(this).data("id");
-            if (confirm('Bạn có chắc chắn muốn xóa') == true) {
+            if (confirm('Bạn có chắc chắn muốn xóa') === true) {
                 $.ajax({
                     url: "/employee/delete",
                     type: "get",
