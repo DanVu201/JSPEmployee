@@ -16,9 +16,6 @@
 <h2><a href="/index.jsp">Home page</a></h2>
 <h2><a href="/employee/list">List All</a></h2>
 <h2><a href="/employee/add">Add Employee</a></h2>
-<h2><a href="/employee/edit">Edit Employee</a></h2>
-<h2><a href="/employee/delete">Delete</a></h2>
-<h2><a href="/employee/GetById">Get Employee By Id</a></h2>
 
 <h3>Select an employee by ID </h3>
 <form action="/employee/GetById" method="get">
@@ -73,7 +70,7 @@
         $(document).on('click', '#delete', function (e) {
             e.preventDefault();
             var employeeId = $(this).data("id");
-            if(confirm('Bạn có chắc chắn muốn xóa') == true){
+            if (confirm('Bạn có chắc chắn muốn xóa') == true) {
                 $.ajax({
                     url: "/employee/delete",
                     type: "get",
