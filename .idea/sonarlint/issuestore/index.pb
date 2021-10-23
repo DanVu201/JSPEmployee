@@ -25,8 +25,6 @@ u
 E.idea/libraries/Maven__org_mariadb_jdbc_mariadb_java_client_2_7_3.xml,b\4\b4ac9e00b4b5d6c515351e362dfa935d1c947d5d
 y
 I.idea/libraries/Maven__org_apache_taglibs_taglibs_standard_spec_1_2_5.xml,6\e\6e286e76f264f03361fe6bdb8764a42d571df434
-I
-src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded
 `
 0src/main/java/com/hivetech/jdbc/JDBC_Helper.java,e\0\e008f7308f3f28fc92a675f3aabe1edf49903705
 O
@@ -37,3 +35,5 @@ O
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 ]
 -src/main/java/com/hivetech/jdbc/Database.java,2\0\20553aee6e0c7e5ff17934ff43cf0dfb87096504
+I
+src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded

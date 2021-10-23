@@ -9,105 +9,83 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-  <title>Employee Management</title>
+    <title>Employee Management</title>
+    <script language="javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
 </head>
 <body>
 <h2><a href="/index.jsp">Home page</a></h2>
 <h2><a href="/employee/list">List All</a></h2>
-<h3>Add new employee</h3>
-
-<form action="/employee/add" method="post">
-  <table style="border: black 1px solid">
-    <tr>
-      <th>Id</th>
-      <th>Age</th>
-      <th>Name</th>
-      <th>City</th>
-      <th>Add</th>
-    </tr>
-    <tr>
-      <td><input type="text" name="employeeId"></td>
-      <td><input type="text" name="employeeAge"></td>
-      <td><input type="text" name="employeeName"></td>
-      <td><input type="text" name="employeeCity"></td>
-      <td><input type="submit" value="Add"></td>
-    </tr>
-  </table>
-</form>
-
-<h3>Delete an employee by ID </h3>
-<form action="/employee/delete" method="Delete">
-  <table style="border: black 1px solid">
-    <tr>
-      <th>ID</th>
-      <th>Remove</th>
-    </tr>
-    <tr>
-      <td>
-        <input type="text" name="employeeId">
-      </td>
-      <td>
-        <input type="submit" value="Remove">
-      </td>
-    </tr>
-  </table>
-</form>
-
-<h3>Edit an employee by ID</h3>
-<form action="/employee/edit" method="post">
-  <table style="border: black 1px solid">
-    <tr>
-      <th>ID</th>
-      <th>Age</th>
-      <th>Name</th>
-      <th>City</th>
-      <th>Submit</th>
-    </tr>
-    <tr>
-      <td><input type="text" name="employeeId"></td>
-      <td><input type="text" name="employeeAge"></td>
-      <td><input type="text" name="employeeName"></td>
-      <td><input type="text" name="employeeCity"></td>
-      <td><input type="submit" value="Submit"></td>
-    </tr>
-  </table>
-</form>
+<h2><a href="/employee/add">Add Employee</a></h2>
+<h2><a href="/employee/edit">Edit Employee</a></h2>
+<h2><a href="/employee/delete">Delete</a></h2>
+<h2><a href="/employee/GetById">Get Employee By Id</a></h2>
 
 <h3>Select an employee by ID </h3>
 <form action="/employee/GetById" method="get">
-  <table style="border: black 1px solid">
-    <tr>
-      <th>ID</th>
-      <th>Select</th>
-    </tr>
-    <tr>
-      <td>
-        <input type="text" name="employeeId">
-      </td>
-      <td>
-        <input type="submit" value="Select">
-      </td>
-    </tr>
-  </table>
+    <table style="border: black 1px solid">
+        <tr>
+            <th>ID</th>
+            <th>Select</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name="employeeId">
+            </td>
+            <td>
+                <input type="submit" value="Select">
+            </td>
+        </tr>
+    </table>
 </form>
+
 <h3>List all employee</h3>
-<table style="border: black 2px solid">
-  <tr>
-    <th>Id</th>
-    <th>Age</th>
-    <th>Name</th>
-    <th>City</th>
-  </tr>
-  <c:forEach var="temp" items="${listEmployee}">
-    <td>
-      <tr>
-        <td>${temp.employeeId}</td>
-        <td>${temp.employeeAge}</td>
-        <td>${temp.employeeName}</td>
-        <td>${temp.employeeCity}</td>
-      </tr>
-    </td>
-  </c:forEach>
-</table>
+<div id="list">
+    <table class="list" style="border: black 2px solid">
+        <tr>
+            <th>Id</th>
+            <th>Age</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <c:forEach var="temp" items="${listEmployee}">
+            <td>
+                <tr>
+                    <td>${temp.employeeId}</td>
+                    <td>${temp.employeeAge}</td>
+                    <td>${temp.employeeName}</td>
+                    <td>${temp.employeeCity}</td>
+                    <td><a href="/employee/edit?Id=${temp.employeeId}">
+                        <button type="submit" name="Edit">Edit</button>
+                    </a></td>
+                    <td>
+                        <button type="submit" name="Edit" id="delete" data-id="${temp.employeeId}">Delete</button>
+                    </td>
+                </tr>
+            </td>
+        </c:forEach>
+    </table>
+</div>
 </body>
+<script language="javascript">
+    $(document).ready(function () {
+        $(document).on('click', '#delete', function (e) {
+            e.preventDefault();
+            var employeeId = $(this).data("id");
+            if(confirm('Bạn có chắc chắn muốn xóa') == true){
+                $.ajax({
+                    url: "/employee/delete",
+                    type: "get",
+                    data: {
+                        employeeId: employeeId
+                    },
+                    success: function (result) {
+                        $("#list").load(" .list");
+                    }
+                });
+            }
+        })
+    })
+</script>
 </html>

@@ -49,6 +49,31 @@ public class EmployeeServiceImpl implements EmployeeService {
         return list;
     }
 
+    @Override
+    public Employee getEmployee (int employeeId){
+        Employee employee = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(GET_EMPLOYEE_BY_ID);
+            statement.setInt(1, employeeId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("Id");
+                int age = resultSet.getInt("Age");
+                String name = resultSet.getString("Name");
+                String city = resultSet.getString("City");
+                employee = new Employee(id, age, name, city);
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.getMessage());
+        } finally {
+            JDBC_Helper.closeResultSet(resultSet);
+            JDBC_Helper.closeStatement(statement);
+        }
+        return employee;
+    }
+
 
     @Override
     public List<Employee> getEmployeeById(int employeeId) {
@@ -58,7 +83,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         try {
             statement = connection.prepareStatement(GET_EMPLOYEE_BY_ID);
             statement.setInt(1, employeeId);
-
             rs = statement.executeQuery();
             if (rs.next()) {
                 list.add(new Employee(

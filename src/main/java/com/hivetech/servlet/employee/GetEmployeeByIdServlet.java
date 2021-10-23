@@ -26,16 +26,16 @@ public class GetEmployeeByIdServlet extends HttpServlet {
         employeeService = new EmployeeServiceImpl();
     }
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
-        List<Employee> employee = employeeService.getEmployeeById(employeeId);
-        request.setAttribute("listEmployee", employee);
+        List<Employee> list = employeeService.getEmployeeById(employeeId);
+        request.setAttribute("listEmployee", list);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/listEmployee.jsp");
         dispatcher.forward(request, response);
-
-        LOGGER.info(String.format("Method: %s; Servlet Path: %s; Num of Employee: %d "
-                , request.getMethod(), request.getServletPath(), employee.size()));
     }
+
+
 }

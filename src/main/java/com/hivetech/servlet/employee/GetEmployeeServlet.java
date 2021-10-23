@@ -7,34 +7,27 @@ import com.hivetech.service.implement.EmployeeServiceImpl;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
-@WebServlet("/employee/delete")
-public class DeleteEmployeeServlet extends HttpServlet {
+@WebServlet("/employee/GetEmployee")
+public class GetEmployeeServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(DeleteEmployeeServlet.class.getName());
-
-    private EmployeeService employeeService;
-
+    EmployeeService employeeService;
     public void init() {
         employeeService = new EmployeeServiceImpl();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doDelete(request, response);
-
-    }
-
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
-        boolean isDeleted = employeeService.delete(employeeId);
-        response.sendRedirect("/employee/list");
-        LOGGER.info("Action: " + request.getServletPath() + " | isDelete: " + isDeleted + " | employeeId: " + employeeId);
+        Employee employee = employeeService.getEmployee(employeeId);
+        request.setAttribute("Employee", employee);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/editEmployee.jsp");
+        dispatcher.forward(request, response);
     }
 
 }
