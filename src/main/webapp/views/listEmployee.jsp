@@ -16,6 +16,7 @@
 <h2><a href="/index.jsp">Home page</a></h2>
 <h2><a href="/employee/list">List All</a></h2>
 <h2><a href="/employee/add">Add Employee</a></h2>
+<h2><a href="/employee/delete">Delete an Employee</a></h2>
 
 <h3>Select an employee by ID </h3>
 <form action="/employee/GetById" method="get">
@@ -73,12 +74,17 @@
             if (confirm('Bạn có chắc chắn muốn xóa') === true) {
                 $.ajax({
                     url: "/employee/delete",
-                    type: "get",
+                    type: "Delete",
                     data: {
                         employeeId: employeeId
                     },
                     success: function (result) {
+                        console.log('success')
                         $("#list").load(" .list");
+                        alert('Đã xóa thành công Id = '+ employeeId);
+                    },
+                    error: function (request, status, error) {
+                        alert("some error");
                     }
                 });
             }

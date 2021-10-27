@@ -17,6 +17,12 @@ public class Employee {
         this.employeeCity = employeeCity;
     }
 
+    public Employee(int employeeAge, String employeeName, String employeeCity) {
+        this.employeeAge = employeeAge;
+        this.employeeName = employeeName;
+        this.employeeCity = employeeCity;
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }

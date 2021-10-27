@@ -35,16 +35,15 @@ public class AddEmployeeServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
         int employeeAge = Integer.parseInt(request.getParameter("employeeAge"));
         String employeeName = request.getParameter("employeeName");
         String employeeCity = request.getParameter("employeeCity");
 
-        Employee newEmployee = new Employee(employeeId, employeeAge, employeeName, employeeCity);
+        Employee newEmployee = new Employee(employeeAge, employeeName, employeeCity);
         boolean added = employeeService.add(newEmployee);
         response.sendRedirect("/employee/list");
-        LOGGER.info(String.format("Method: %s | action: %s | Added: %b | Employee : %d ",
-                request.getMethod(), request.getRequestURI(), added, employeeId));
+        LOGGER.info(String.format("Method: %s | action: %s | Added: %b |",
+                request.getMethod(), request.getRequestURI(), added));
     }
 
 }

@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private static String DELETE_EMPLOYEE_BY_TD = "DELETE FROM employees WHERE Id = ?;";
     private static String GET_EMPLOYEE_BY_ID = "SELECT * FROM employees WHERE Id = ?;";
     private static String UPDATE_EMPLOYEE = "UPDATE employees SET Age = ?, Name = ?, City = ? WHERE Id = ?;";
-    private static String INSERT_EMPLOYEE = "INSERT INTO employees(Id, Age, Name, City) VALUES (?, ?, ?, ?);";
+    private static String INSERT_EMPLOYEE = "INSERT INTO employees(Age, Name, City) VALUES (?, ?, ?);";
 
     @Override
     public List<Employee> employees() {
@@ -106,10 +106,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(INSERT_EMPLOYEE);
-            statement.setInt(1, employee.getEmployeeId());
-            statement.setInt(2, employee.getEmployeeAge());
-            statement.setString(3, employee.getEmployeeName());
-            statement.setString(4, employee.getEmployeeCity());
+            statement.setInt(1, employee.getEmployeeAge());
+            statement.setString(2, employee.getEmployeeName());
+            statement.setString(3, employee.getEmployeeCity());
             isInserted = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());

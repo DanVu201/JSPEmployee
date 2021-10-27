@@ -16,14 +16,12 @@
 <form action="/employee/add" method="post">
     <table style="border: black 1px solid">
         <tr>
-            <th>Id</th>
             <th>Age</th>
             <th>Name</th>
             <th>City</th>
             <th>Add</th>
         </tr>
         <tr>
-            <td><input type="text" name="employeeId"></td>
             <td><input type="text" name="employeeAge"></td>
             <td><input type="text" name="employeeName"></td>
             <td><input type="text" name="employeeCity"></td>
